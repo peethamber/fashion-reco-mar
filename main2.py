@@ -9,7 +9,7 @@ from tensorflow.keras.preprocessing import image
 from tensorflow.keras.applications.resnet50 import ResNet50,preprocess_input
 from numpy.linalg import norm
 from sklearn.neighbors import NearestNeighbors
-from requests import request
+
 import re
 import sys
 
@@ -60,9 +60,9 @@ codes_array_lower = [
 
     ]
 feature_list = np.array(pickle.load(open('embeddings.pkl','rb')))
-url = request.META.get('PATH_INFO')
-url = urlparse(url)
-st.write(url)
+img_name = st.experimental_get_query_params()
+{"img_name"}
+st.write(img_name)
 
 filenames = pickle.load(open('filenames.pkl','rb'))
 
