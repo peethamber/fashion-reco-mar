@@ -62,7 +62,7 @@ codes_array_lower = [
 feature_list = np.array(pickle.load(open('embeddings.pkl','rb')))
 img_name = st.experimental_get_query_params()
 
-st.write(img_name['img_name']['0'])
+st.write(img_name['img_name'][0])
 
 filenames = pickle.load(open('filenames.pkl','rb'))
 
