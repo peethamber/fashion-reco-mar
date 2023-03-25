@@ -11,6 +11,8 @@ from numpy.linalg import norm
 from sklearn.neighbors import NearestNeighbors
 import re
 import sys
+import requests
+from urllib.parse import urlparse
 
 
 codes_array = [
@@ -56,7 +58,9 @@ codes_array_lower = [
 
     ]
 feature_list = np.array(pickle.load(open('embeddings.pkl','rb')))
-
+url = requests.META.get('HTTP_REFERER')
+url = urlparse(url)
+st.write(url)
 
 filenames = pickle.load(open('filenames.pkl','rb'))
 
