@@ -196,7 +196,7 @@ def recommend(features,feature_list):
     return indices
 
 uploaded_file = st.file_uploader("choose an image")
-img_width = 135
+img_width = 230
 if uploaded_file is not None:
     if save_uploaded_file(uploaded_file):
         display_image = Image.open(uploaded_file)
