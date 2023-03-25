@@ -67,6 +67,7 @@ model = tensorflow.keras.Sequential([
 
 
 st.title("Designs Recommender")
+st.subheader("Select your best picture from your device and see matching designs from our store")
 
 def save_uploaded_file(uploaded_file):
     try:
