@@ -209,7 +209,7 @@ def recommend(features,feature_list):
 # st.write(sys.argv[1])
 img_width = 230
 
-image_to_open = img_name['img_name'][0]
+image_to_open = './OG-Media/'+img_name['img_name'][0]
 st.write(image_to_open)
 display_image = Image.open(image_to_open)
 st.image(display_image,width=450)
