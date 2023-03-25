@@ -209,9 +209,9 @@ def recommend(features,feature_list):
 # st.write(sys.argv[1])
 img_width = 230
 
-display_image = Image.open(img_name['img_name'])
+display_image = Image.open(img_name['img_name'][0])
 st.image(display_image,width=450)
-features = feature_extraction(os.path.join('./',img_name['img_name']),model)
+features = feature_extraction(os.path.join('./',img_name['img_name'][0]),model)
 indices = recommend(features,feature_list)
 
 st.subheader("Design recommendations from us")
