@@ -60,7 +60,7 @@ codes_array_lower = [
 
     ]
 feature_list = np.array(pickle.load(open('embeddings.pkl','rb')))
-url = request.META.get('HTTP_REFERER')
+url = request.META.get('PATH_INFO')
 url = urlparse(url)
 st.write(url)
 
