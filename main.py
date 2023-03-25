@@ -127,7 +127,19 @@ def check_sub(sub,filename):
                 <a href={url}><button style="background-color:GreenYellow;">{sub1}</button></a>
                 ''',
                 unsafe_allow_html=True)
-
+                
+    if sub == "RRBMS" or sub == "rrbms":
+        if sub in os.path.basename(filename):
+                ind = os.path.basename(filename).find(sub)
+                sub1 = os.path.basename(filename)[ind:ind+8]
+                
+                sub1 = re.sub('-','',sub1)
+                url = "https://www.rebblebee.com/AllProducts?"+sub1
+                
+                st.markdown(f'''
+                <a href={url}><button style="background-color:GreenYellow;">{sub1}</button></a>
+                ''',
+                unsafe_allow_html=True)
 
     if sub in codes_array:
          if sub in os.path.basename(filename):
@@ -165,6 +177,9 @@ def do_all_code_checks(fname):
 
     check_sub("REJS",fname)
     check_sub("rejs",fname)
+
+    check_sub("RRBMS",fname)
+    check_sub("rrbms",fname)
 
     for code in codes_array:
          check_sub(code,fname)
