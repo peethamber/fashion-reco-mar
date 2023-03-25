@@ -212,7 +212,8 @@ img_width = 230
 image_to_open = 'OG-Media/'+img_name['img_name'][0]
 display_image = Image.open(image_to_open)
 st.image(display_image,width=450)
-features = feature_extraction(os.path.join('./',image_to_open,model))
+features = feature_extraction(os.path.join('./',image_to_open),model)
+
 indices = recommend(features,feature_list)
 
 st.subheader("Design recommendations from us")
