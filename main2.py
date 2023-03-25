@@ -10,6 +10,8 @@ from tensorflow.keras.applications.resnet50 import ResNet50,preprocess_input
 from numpy.linalg import norm
 from sklearn.neighbors import NearestNeighbors
 import re
+import sys
+
 
 codes_array = [
         "ROD",
@@ -67,7 +69,6 @@ model = tensorflow.keras.Sequential([
 
 
 st.title("Designs Recommender")
-st.subheader("Select your best picture from your device and see matching designs from our store")
 
 def save_uploaded_file(uploaded_file):
     try:
@@ -195,45 +196,46 @@ def recommend(features,feature_list):
     distances,indices = neighbors.kneighbors([features])
     return indices
 
-uploaded_file = st.file_uploader("choose an image")
 
+# uploaded_file = st.file_uploader("choose an image")
+
+
+# st.write(sys.argv[1])
 img_width = 230
-if uploaded_file is not None:
-    if save_uploaded_file(uploaded_file):
-        display_image = Image.open(uploaded_file)
-        st.image(display_image,width=450)
-        features = feature_extraction(os.path.join('./',uploaded_file.name),model)
-        indices = recommend(features,feature_list)
-        
-        st.subheader("Design recommendations from us")
 
-        col1,col2,col3,col4,col5 = st.columns(5)
+display_image = Image.open(sys.argv[1])
+st.image(display_image,width=450)
+features = feature_extraction(os.path.join('./',sys.argv[1]),model)
+indices = recommend(features,feature_list)
 
-        with col1:
-            st.image(filenames[indices[0][0]],width = img_width)
-            st.write(os.path.basename(filenames[indices[0][0]]))
-            do_all_code_checks(filenames[indices[0][0]])
-            
-            
-        with col2:
-            st.image(filenames[indices[0][1]],width = img_width)
-            st.write(os.path.basename(filenames[indices[0][1]]))
-            do_all_code_checks(filenames[indices[0][1]])
-            
-        with col3:
-            st.image(filenames[indices[0][2]],width = img_width)
-            st.write(os.path.basename(filenames[indices[0][2]]))
-            do_all_code_checks(filenames[indices[0][2]])
+st.subheader("Design recommendations from us")
 
-        with col4:
-            st.image(filenames[indices[0][3]],width = img_width)
-            st.write(os.path.basename(filenames[indices[0][3]]))
-            do_all_code_checks(filenames[indices[0][3]])
+col1,col2,col3,col4,col5 = st.columns(5)
 
-        with col5:
-            st.image(filenames[indices[0][4]],width = img_width)
-            st.write(os.path.basename(filenames[indices[0][4]]))
-            do_all_code_checks(filenames[indices[0][4]])
-    else:
-        st.error("Error while uploading file")
+with col1:
+    st.image(filenames[indices[0][0]],width = img_width)
+    st.write(os.path.basename(filenames[indices[0][0]]))
+    do_all_code_checks(filenames[indices[0][0]])
+    
+    
+with col2:
+    st.image(filenames[indices[0][1]],width = img_width)
+    st.write(os.path.basename(filenames[indices[0][1]]))
+    do_all_code_checks(filenames[indices[0][1]])
+    
+with col3:
+    st.image(filenames[indices[0][2]],width = img_width)
+    st.write(os.path.basename(filenames[indices[0][2]]))
+    do_all_code_checks(filenames[indices[0][2]])
+
+with col4:
+    st.image(filenames[indices[0][3]],width = img_width)
+    st.write(os.path.basename(filenames[indices[0][3]]))
+    do_all_code_checks(filenames[indices[0][3]])
+
+with col5:
+    st.image(filenames[indices[0][4]],width = img_width)
+    st.write(os.path.basename(filenames[indices[0][4]]))
+    do_all_code_checks(filenames[indices[0][4]])
+    
 
