@@ -9,10 +9,12 @@ from tensorflow.keras.preprocessing import image
 from tensorflow.keras.applications.resnet50 import ResNet50,preprocess_input
 from numpy.linalg import norm
 from sklearn.neighbors import NearestNeighbors
+from requests import request
 import re
 import sys
-import requests
+
 from urllib.parse import urlparse
+
 
 
 codes_array = [
@@ -58,7 +60,7 @@ codes_array_lower = [
 
     ]
 feature_list = np.array(pickle.load(open('embeddings.pkl','rb')))
-url = requests.META.get('PATH_INFO')
+url = request.META.get('HTTP_REFERER')
 url = urlparse(url)
 st.write(url)
 
